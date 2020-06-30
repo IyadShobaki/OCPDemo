@@ -13,19 +13,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            List<PersonModel> applicants = new List<PersonModel>
+            List<IApplicantModel> applicants = new List<IApplicantModel>
             {
-                new PersonModel { FirstName = "Iyad", LastName = "Shobaki", TypeOfEmployee = EmployeeType.Executive},
-                new PersonModel { FirstName = "Tim", LastName = "Corey", TypeOfEmployee = EmployeeType.Manager},
+                new ExecutiveModel { FirstName = "Iyad", LastName = "Shobaki" },
+                new ManagerModel { FirstName = "Tim", LastName = "Corey" },
                 new PersonModel { FirstName = "Sue", LastName = "Storm"}
             };
 
             List<EmployeeModel> employees = new List<EmployeeModel>();
-            Accounts accountProcessor = new Accounts();
 
             foreach (var person in applicants)
             {
-                employees.Add(accountProcessor.Create(person));
+                employees.Add(person.AccountProcessor.Create(person));
             }
 
             foreach (var emp in employees)
